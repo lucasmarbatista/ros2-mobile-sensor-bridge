@@ -10,7 +10,7 @@ class IMUSensorManager {
     this.isActive = false;
     this.ws = null;
     this.sampleRate = 30; // Hz - default value, will be updated from config
-    this.useRadians = false; // Boolean - default value, will be updated from config
+    this.convertToRadians = false; // Boolean - default value, will be updated from config
     this.intervalId = null;
 
     // Store sensor data - only accelerometer and gyroscope
@@ -42,9 +42,9 @@ class IMUSensorManager {
           console.log('IMU sample rate loaded from config:', this.sampleRate, 'Hz');
         }
 
-        if (config.imu && config.imu.use_radians) {
-          this.useRadians = config.imu.use_radians;
-          console.log('IMU use_radians parameter loaded from config:', this.useRadians);
+        if (config.imu && config.imu.convert_to_radians !== undefined) {
+          this.convertToRadians = config.imu.convert_to_radians;
+          console.log('IMU convert_to_radians parameter loaded from config:', this.convertToRadians);
         }
       }
     } catch (error) {
